@@ -1,9 +1,14 @@
+require('dotenv').config()
 const express = require('express')
+const app = express()
 
-const App = new express()
+const query = require('./routes/query.js')
+const add = require('./routes/add.js')
 
-App.get('/',(req,res)=>{
-	return res.send('Hello World')
-})
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
-App.listen('8000',()=>{console.log('server starting')})
+app.use('/q',query);
+app.use('/add',add);
+
+app.listen('8000',()=>{console.log('server starting')})
