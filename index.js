@@ -1,5 +1,7 @@
 require('dotenv').config()
+
 const express = require('express')
+const functions = require('firebase-functions')
 const app = express()
 
 const query = require('./routes/query.js')
@@ -11,4 +13,4 @@ app.use(express.urlencoded({extended: true}))
 app.use('/q',query);
 app.use('/add',add);
 
-app.listen('8000',()=>{console.log('server starting')})
+exports.redirect = functions.https.onRequest(app)
