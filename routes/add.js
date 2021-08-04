@@ -13,7 +13,19 @@ function makeid(length) {
     return result;
 }
 
+router.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://remote.sivir.pw:3000');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Pass to next layer of middleware
+    next();
+});
+
 router.post('/', async (req, res) => {
+    console.log(req.body)
     if(typeof(req.body.url) !== "undefined"){
         //check if the link zipped before
         const token = makeid(7)

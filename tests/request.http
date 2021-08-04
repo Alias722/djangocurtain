@@ -1,5 +1,5 @@
 #post new url 
-POST http://local.sivir.pw:8080/add HTTP/1.1
+POST http://remote.sivir.pw:8080/add HTTP/1.1
 Content-Type: application/json
 
 {
